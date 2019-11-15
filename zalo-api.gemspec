@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'zalo_api/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'zalo-api-ruby-sdk'
+  spec.name          = 'zalo-api'
   spec.version       = ZaloAPI::VERSION
   spec.authors       = ['Huy Hùng']
   spec.email         = ["huyhung1994@gmail.com"]

@@ -16,6 +16,9 @@ module ZaloAPI
     # @return [Logger] Logger to use when logging requests.
     attr_accessor :logger
 
+    # @return [Boolean] Whether to attempt to retry when rate-limited (http status: 429).
+    attr_accessor :retry
+
     def initialize
       @client_options = {}
     end
