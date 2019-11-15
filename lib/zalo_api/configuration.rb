@@ -13,6 +13,9 @@ module ZaloAPI
     # @return [String] OAuth2 access_token
     attr_accessor :access_token
 
+    # @return [Logger] Logger to use when logging requests.
+    attr_accessor :logger
+
     def initialize
       @client_options = {}
     end
