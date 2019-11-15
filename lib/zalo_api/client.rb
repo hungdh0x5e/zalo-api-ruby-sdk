@@ -6,6 +6,7 @@ require 'zalo_api/middleware/request/encode_json'
 require 'zalo_api/middleware/request/url_based_access_token'
 require 'zalo_api/middleware/response/sanitize_response'
 require 'zalo_api/middleware/response/parse_json'
+require 'zalo_api/middleware/response/logger'
 
 module ZaloAPI
   class Client
@@ -18,6 +19,7 @@ module ZaloAPI
       @config = ZaloAPI::Configuration.new
       yield config
 
+      config.retry = !!config.retry # nil -> false
       set_default_logger
     end
 
@@ -43,12 +45,14 @@ module ZaloAPI
         # response
         builder.use ZaloAPI::Middleware::Response::ParseJson
         builder.use ZaloAPI::Middleware::Response::SanitizeResponse
-        builder.use ZendeskAPI::Middleware::Response::Logger, config.logger if config.logger
-        builder.adapter(Faraday.default_adapter)
+        builder.use ZaloAPI::Middleware::Response::Logger, config.logger if config.logger
 
         # request
         builder.use ZaloAPI::Middleware::Request::UrlBasedAccessToken, config.access_token
         builder.use ZaloAPI::Middleware::Request::EncodeJson
+        builder.use ZendeskAPI::Middleware::Request::Retry, :logger => config.logger if config.retry
+
+        builder.adapter(Faraday.default_adapter)
       end
     end
 
