@@ -67,7 +67,7 @@ module ZaloAPI
     #     }
     #   }
     def get_user_profile(user_id)
-      @client.connection.get "#{base_url}/oa/listrecentchat", { data: param.to_json }
+      @client.connection.get "#{base_url}/oa/getprofile", { data: { user_id: user_id }.to_json }
     end
 
     # Get a list of messages with interested people

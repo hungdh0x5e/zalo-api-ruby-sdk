@@ -1,4 +1,4 @@
-require 'zalo_api/version'
+require 'zalo_api/client'
 
 module ZaloAPI
   class Error < StandardError; end

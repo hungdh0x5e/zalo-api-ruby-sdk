@@ -2,6 +2,7 @@ require 'faraday'
 
 require 'zalo_api/version'
 require 'zalo_api/configuration'
+require 'zalo_api/oa'
 require 'zalo_api/middleware/request/encode_json'
 require 'zalo_api/middleware/request/url_based_access_token'
 require 'zalo_api/middleware/response/sanitize_response'

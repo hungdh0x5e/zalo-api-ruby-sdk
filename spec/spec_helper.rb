@@ -1,5 +1,5 @@
-require "bundler/setup"
-require "zalo/api/ruby/sdk"
+require 'bundler/setup'
+require 'zalo_api'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
